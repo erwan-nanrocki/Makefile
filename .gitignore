@@ -1,0 +1,8 @@
+executable_file
+*.a
+objects/
+*.o
+dependencies/
+*.d
+*_DONE
+*.swp
