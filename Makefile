@@ -6,28 +6,28 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/04/24 02:54:07 by enanrock         ###   ########.fr        #
+#    Updated: 2018/04/24 03:08:57 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=  executable_file
+NAME		:=executable_file
 
-FILES		:=  main say_hello \
+FILES		:= main say_hello \
 	arg_error null_error
 
-LIBFT_DIR	:=  libft/
-SRC_DIR		:=  sources/
-OBJ_DIR		:=  objects/
-HDR_DIR		:=  includes/
-DEP_DIR		:=  dependencies/
+LIBFT_DIR	:= libft/
+SRC_DIR		:= sources/
+OBJ_DIR		:= objects/
+HDR_DIR		:= includes/
+DEP_DIR		:= dependencies/
 
-SRC			:=  $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
-OBJ			:=  $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
-DEP			:=  $(addprefix $(DEP_DIR), $(addsuffix .d, $(FILES)))
+SRC			:= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+OBJ			:= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+DEP			:= $(addprefix $(DEP_DIR), $(addsuffix .d, $(FILES)))
 
-LIB_FLAGS	:=  -L$(LIBFT_DIR) -lft
+LIB_FLAGS	:= -L$(LIBFT_DIR) -lft
 
-GCC_FLAGS	:=  -Wall -Wextra -Werror -I$(HDR_DIR) -I$(LIBFT_DIR)
+GCC_FLAGS	:= -Wall -Wextra -Werror -I$(HDR_DIR) -I$(LIBFT_DIR)
 
 .PHONY:		all clean fclean re reset clone where_is_malloc norme
 
