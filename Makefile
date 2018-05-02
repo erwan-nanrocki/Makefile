@@ -6,7 +6,7 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/04/24 03:08:57 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/02 15:43:14 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC			:= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ			:= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 DEP			:= $(addprefix $(DEP_DIR), $(addsuffix .d, $(FILES)))
 
+LIB			:= . gnl mem str put lst loop math char xtoy other
+LIB_DEP		:=$(addprefix $(LIBFT_DIR), $(LIB))
+
 LIB_FLAGS	:= -L$(LIBFT_DIR) -lft
 
 GCC_FLAGS	:= -Wall -Wextra -Werror -I$(HDR_DIR) -I$(LIBFT_DIR)
@@ -33,10 +36,10 @@ GCC_FLAGS	:= -Wall -Wextra -Werror -I$(HDR_DIR) -I$(LIBFT_DIR)
 
 all: author .gitmodules .gitignore $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "### ####################### LIBFT  BEGIN ####################### ###"
+$(LIBFT_DIR)libft.a: $(LIB_DEP)
 	@make libft.a -C $(LIBFT_DIR)
-	@echo "### ######################## LIBFT  END ######################## ###"
+
+$(NAME): $(OBJ) $(LIBFT_DIR)libft.a
 	@gcc $(GCC_FLAGS) $(LIB_FLAGS) $^ -o $@
 	@echo "\033[0;32m""created   : $@""\033[m"
 	@echo "\033[1;36m""flags i use are ""\033[0;36m""$(GCC_FLAGS)""\033[m"
