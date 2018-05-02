@@ -6,7 +6,7 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/02 15:43:14 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/02 16:01:04 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ all: author .gitmodules .gitignore $(NAME)
 $(LIBFT_DIR)libft.a: $(LIB_DEP)
 	@make libft.a -C $(LIBFT_DIR)
 
-$(NAME): $(OBJ) $(LIBFT_DIR)libft.a
+$(NAME): $(LIBFT_DIR)libft.a $(OBJ) 
 	@gcc $(GCC_FLAGS) $(LIB_FLAGS) $^ -o $@
 	@echo "\033[0;32m""created   : $@""\033[m"
 	@echo "\033[1;36m""flags i use are ""\033[0;36m""$(GCC_FLAGS)""\033[m"
