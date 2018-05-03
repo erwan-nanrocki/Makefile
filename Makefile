@@ -6,7 +6,7 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/02 16:01:04 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/02 16:38:18 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,10 @@ $(LIBFT_DIR)libft.a: $(LIB_DEP)
 
 $(NAME): $(LIBFT_DIR)libft.a $(OBJ) 
 	@gcc $(GCC_FLAGS) $(LIB_FLAGS) $^ -o $@
-	@echo "\033[0;32m""created   : $@""\033[m"
+	@echo "\033[1;39m""created : ""\033[0;32m""$@""\033[m"
 	@echo "\033[1;36m""flags i use are ""\033[0;36m""$(GCC_FLAGS)""\033[m"
 	@echo "\033[1;36m""and ""\033[0;36m""$(LIB_FLAGS)""\033[1;36m"" too, ""\c"
-	@echo "but only when i link $@""\033[m"
+	@echo "but only when i link \033[7m"" $@ ""\033[m"
 
 -include $(DEP)
 
@@ -53,18 +53,19 @@ $(DEP_DIR)%.d: $(SRC_DIR)%.c $(SRC_DIR) $(HDR_DIR)
 	@mkdir -p $(OBJ_DIR) 2> /tmp/a.del
 	@gcc $(GCC_FLAGS) -MM $< -MT $(<:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)        >  $@
 	@echo "	@gcc $(GCC_FLAGS) -c $< -o $(<:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)" >> $@
-	@echo "	@echo \"\\\033[0;33m\"\"\c"                                  >> $@
-	@echo "created   : $(<:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)\"\c"             >> $@
+	@echo "	@echo \"\\033[1;39m\"\"created : \"\"\\\033[0;33m\"\"\c"     >> $@
+	@echo "$(<:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)\"\c"                         >> $@
 	@echo "\"\\\033[m\""                                                 >> $@
 	@echo ""                                                             >> $@
-	@echo "\033[7m""created   : $@ ""\033[m"
+	@echo "\033[1;39m""\033[7m""created : $@ ""\033[m"
 
 clean:
-	@echo "\033[0;31m""deleted all these files :""\033[m"
+	@echo "\033[0;31m""deleted all these files and directory :""\033[m"
 	@make $@ -C $(LIBFT_DIR)
-	@echo "\033[1;31m""\c"
+	@echo "\033[0;31m""\c"
 	@rm -fv $(OBJ) | column
 	@rm -dv $(OBJ_DIR) | column
+	@echo "\033[1;31m""\c"
 	@rm -fv $(DEP) | column
 	@rm -dv $(DEP_DIR) | column
 	@echo "\033[m""\c"
