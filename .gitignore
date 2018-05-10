@@ -1,8 +1,12 @@
-executable_file
+farewell
+greeting
 *.a
-objects/
+farewell_dir/objects/
+greeting_dir/objects/
+libft/objects/
 *.o
-dependencies/
+farewell_dir/dependencies/
+greeting_dir/dependencies/
 *.d
 *_DONE
 *.swp

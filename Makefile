@@ -6,7 +6,7 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/10 17:44:50 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/10 17:58:21 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,14 +66,18 @@ reset:
 
 .gitignore:
 	@echo "\033[1;37m""\c"
-	echo "$(NAMES)"    >  $@
-	echo "*.a"         >> $@
-	echo "$(OBJS_DIR)" >> $@
-	echo "*.o"         >> $@
-	echo "$(DEPS_DIR)" >> $@
-	echo "*.d"         >> $@
-	echo "*_DONE"      >> $@
-	echo "*.swp"       >> $@
+	echo "$(NAME_001)"		>  $@
+	echo "$(NAME_002)"		>>  $@
+	echo "*.a"				>> $@
+	echo "$(OBJ_DIR_001)"	>> $@
+	echo "$(OBJ_DIR_002)"	>> $@
+	echo "$(OBJ_DIR_LIBFT)"	>> $@
+	echo "*.o"				>> $@
+	echo "$(DEP_DIR_001)"	>> $@
+	echo "$(DEP_DIR_002)"	>> $@
+	echo "*.d"				>> $@
+	echo "*_DONE"			>> $@
+	echo "*.swp"			>> $@
 	@echo "\033[m"
 
 author:
