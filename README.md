@@ -13,7 +13,7 @@ You can find a complete guide [here](http://ftp.gnu.org/old-gnu/Manuals/make-3.7
 `Creation / Updating` actions
 -----------------------------
 Those actions just creat or update the file asked.
-exemple : `make arg_error.o`
+exemple : `make greeting` or `make farewell_dir/objects/say_goodbye.o`
 
 `phony` actions
 ---------------
