@@ -6,7 +6,7 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/10 17:58:21 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/10 18:01:34 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,9 @@ clean:
 
 fclean:
 	@make clean
-	@make $@ -C $(LIBFT_DIR)
 	@echo "\033[0;31m""\c"
 	@rm -fv $(NAMES)
+	@rm -fv $(NAME_LIBFT)
 	@echo "\033[m""\c"
 
 re:
