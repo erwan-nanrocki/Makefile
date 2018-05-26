@@ -6,12 +6,12 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/26 06:35:09 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/10 18:01:34 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/26 23:45:52 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_001	:= farewell
-NAME_002	:= greeting
+NAME_001	:= greeting
+NAME_002	:= farewell
 NAMES		:= $(NAME_001) $(NAME_002)
 
 NAME_DIR	:= $(addsuffix _dir/, $(NAMES))
@@ -32,6 +32,10 @@ all: author .gitmodules .gitignore $(NAMES)
 
 clean:
 	@echo "\033[0;31m""deleted all these files and directory :""\033[m"
+	@echo "\033[0;35m""\c"
+	@rm -fv $(OBJ_LIBFT) | column
+	@echo "\033[0;35m""\c"
+	@rm -dv $(OBJ_DIR_LIBFT) | column
 	@echo "\033[0;31m""\c"
 	@rm -fv $(OBJS) | column
 	@rm -dv $(OBJS_DIR) | column

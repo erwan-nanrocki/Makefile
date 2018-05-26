@@ -6,51 +6,56 @@
 #    By: enanrock <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/10 13:06:30 by enanrock          #+#    #+#              #
-#    Updated: 2018/05/10 17:26:24 by enanrock         ###   ########.fr        #
+#    Updated: 2018/05/26 23:44:13 by enanrock         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILE_002	:= main say_hello \
+FILE_001	:= main say_hello \
 	arg_error null_error
 
-SRC_DIR_002		:= $(addprefix $(HERE_002), sources/)
-OBJ_DIR_002		:= $(addprefix $(HERE_002), objects/)
-HDR_DIR_002		:= $(addprefix $(HERE_002), includes/)
-DEP_DIR_002		:= $(addprefix $(HERE_002), dependencies/)
+SRC_DIR_001		:= $(addprefix $(HERE_001), sources/)
+OBJ_DIR_001		:= $(addprefix $(HERE_001), objects/)
+HDR_DIR_001		:= $(addprefix $(HERE_001), includes/)
+DEP_DIR_001		:= $(addprefix $(HERE_001), dependencies/)
 
-SRC_002			:= $(addprefix $(SRC_DIR_002), $(addsuffix .c, $(FILE_002)))
-OBJ_002			:= $(addprefix $(OBJ_DIR_002), $(addsuffix .o, $(FILE_002)))
-DEP_002			:= $(addprefix $(DEP_DIR_002), $(addsuffix .d, $(FILE_002)))
+SRC_001			:= $(addprefix $(SRC_DIR_001), $(addsuffix .c, $(FILE_001)))
+OBJ_001			:= $(addprefix $(OBJ_DIR_001), $(addsuffix .o, $(FILE_001)))
+DEP_001			:= $(addprefix $(DEP_DIR_001), $(addsuffix .d, $(FILE_001)))
 
-SRCS_DIR		+= $(SRC_DIR_002)
-OBJS_DIR		+= $(OBJ_DIR_002)
-HDRS_DIR		+= $(HDR_DIR_002)
-DEPS_DIR		+= $(DEP_DIR_002)
+SRCS_DIR		+= $(SRC_DIR_001)
+OBJS_DIR		+= $(OBJ_DIR_001)
+HDRS_DIR		+= $(HDR_DIR_001)
+DEPS_DIR		+= $(DEP_DIR_001)
 
-OBJS			+= $(OBJ_002)
-DEPS			+= $(DEP_002)
+OBJS			+= $(OBJ_001)
+DEPS			+= $(DEP_001)
 
-LIB_FLAGS_002	:= -L$(LIBFT_DIR) -lft
+PRO_001			:=
 
-GCC_FLAGS_002	:= -Wall -Wextra -Werror -I$(HDR_DIR_002) -I$(LIBFT_DIR)
+LIB_FLAGS_001	:= -L$(LIBFT_DIR) -lft
 
-$(NAME_002): $(LIBFT_DIR)libft.a $(OBJ_002)
-	@gcc $(GCC_FLAGS_002) $(LIB_FLAGS_002) $^ -o $@
-	@echo "\033[1;39m""created : ""\033[0;32m""$@""\033[m"
-	@echo "\033[1;36m""flags i use are ""\033[0;36m""$(GCC_FLAGS_002)""\033[m"
-	@echo "\033[1;36m""and ""\033[0;36m""$(LIB_FLAGS_002)""\033[1;36m too, \c"
-	@echo "but only when i link \033[7m"" $@ ""\033[m"
+GCC_FLAGS_001	:= -Wall -Wextra -Werror -I$(HDR_DIR_001) -I$(LIBFT_DIR)
 
-$(DEP_DIR_002)%.d: $(SRC_DIR_002)%.c $(SRC_DIR_002) $(HDR_DIR_002)
-	@mkdir -p $(DEP_DIR_002) 2> /tmp/a.del
-	@mkdir -p $(OBJ_DIR_002) 2> /tmp/a.del
-	@gcc $(GCC_FLAGS_002) -MM $< -MT $(<:$(SRC_DIR_002)%.c=$(OBJ_DIR_002)%.o)>$@
-	@echo "	@gcc $(GCC_FLAGS_002) -c $<""\c"                         >> $@
-	@echo " -o $(<:$(SRC_DIR_002)%.c=$(OBJ_DIR_002)%.o)"             >> $@
-	@echo "	@echo \"\\033[1;39m\"\"created : \"\"\\\033[0;33m\"\"\c" >> $@
-	@echo "$(<:$(SRC_DIR_002)%.c=$(OBJ_DIR_002)%.o)\"\c"             >> $@
-	@echo "\"\\\033[m\""                                             >> $@
-	@echo ""                                                         >> $@
-	@echo "\033[1;39m""\033[7m""created : $@ ""\033[m"
+$(NAME_001): $(LIBFT_DIR)libft.a $(OBJ_001)
+	@gcc $(GCC_FLAGS_001) $(LIB_FLAGS_001) $^ -o $@
+	@echo ""
 
--include $(DEP_002)
+$(DEP_DIR_001)%.d: $(SRC_DIR_001)%.c $(SRC_DIR_001) $(HDR_DIR_001)
+	@mkdir -p $(DEP_DIR_001) 2> /tmp/a.del
+	@mkdir -p $(OBJ_DIR_001) 2> /tmp/a.del
+	@gcc $(GCC_FLAGS_001) -MM $< -MT $(<:$(SRC_DIR_001)%.c=$(OBJ_DIR_001)%.o)>$@
+	@echo "	@gcc $(GCC_FLAGS_001) -c \$$<""\c"                   >> $@
+	@echo " -o $(<:$(SRC_DIR_001)%.c=$(OBJ_DIR_001)%.o)"         >> $@
+	@echo "	\$$(eval PRO_001 += \$$@)"                           >> $@
+	@echo "	@printf \"\\r\\033[2K%-20s : %3d%%\" $(NAME_001) \c" >> $@
+	@echo " \$$\$$(( 100 * \$$(words \$$(PRO_001))\c"            >> $@
+	@echo " / \$$(words \$$(DEP_001)) ))"                        >> $@
+	@echo "	@printf \" [\\033[1;30m\""                           >> $@
+	@echo "	@printf 'O%.0s' {1..50}"                             >> $@
+	@echo "	@printf \"\\033[m]\""                                >> $@
+	@echo "	@printf '\\b%.0s' {1..51}"                           >> $@
+	@echo "	@printf '%0*c' \c"                                   >> $@
+	@echo "\$$\$$(( 50 * \$$(words \$$(PRO_001))\c"              >> $@
+	@echo " / \$$(words \$$(DEP_001)) )) 0"                      >> $@
+
+-include $(DEP_001)
